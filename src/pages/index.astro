@@ -1,12 +1,230 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import Layout from '../layouts/Layout.astro';
-import "../styles/global.css"
+import InteractiveMap from '../components/InteractiveMap';
 ---
 
-<Layout>
-  <Header />
-  <div style="height: 41rem;"></div> {/* Adds white space; adjust height as needed */}
-  <Footer />
+<Layout title="Longhorn Journey - Take Control of Your UT Austin Experience">
+  <div class="min-h-screen bg-gradient-to-br from-orange-50 to-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-orange-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">LJ</span>
+            </div>
+            <span class="text-xl font-bold text-gray-900">Longhorn Journey</span>
+          </div>
+          
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#start" class="text-gray-700 hover:text-orange-600 transition-colors">Start</a>
+            <a href="#about" class="text-gray-700 hover:text-orange-600 transition-colors">About</a>
+            <a href="#faq" class="text-gray-700 hover:text-orange-600 transition-colors">FAQ</a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button data-menu-toggle class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div data-mobile-menu class="hidden md:hidden border-t border-orange-100 bg-white">
+        <div class="px-4 py-2 space-y-1">
+          <a href="#start" class="block px-3 py-2 text-gray-700 hover:text-orange-600 transition-colors">Start</a>
+          <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-orange-600 transition-colors">About</a>
+          <a href="#faq" class="block px-3 py-2 text-gray-700 hover:text-orange-600 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div class="text-center">
+          <div class="mb-6 inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 bg-orange-100 text-orange-700 border-orange-200">
+            Welcome to UT Austin
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Take control of your{" "}
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
+              Longhorn journey
+            </span>
+          </h1>
+          <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Let us guide you through the chaos. Personalized resources, tasks, and support for Freshmen, Transfers, and First-Gen students.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button id="start" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 h-11 rounded-md px-8">
+              Start Your Journey
+              <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground border-orange-200 text-orange-600 hover:bg-orange-50 px-8 py-4 text-lg h-11 rounded-md px-8">
+              Watch Demo
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Background decoration -->
+      <div class="absolute inset-0 -z-10">
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+        <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style="animation-delay: 2s;"></div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 lg:py-24 bg-white" id="about">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Everything you need to succeed
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Our platform provides the tools and resources to make your transition to UT Austin seamless and successful.
+          </p>
+        </div>
+
+        <!-- Interactive Map Preview -->
+        <div class="mb-16">
+          <div class="text-center mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Interactive Campus Map</h3>
+            <p class="text-gray-600">Explore UT Austin campus and discover important locations</p>
+          </div>
+          <InteractiveMap client:load />
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm border-orange-100 hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <div class="flex flex-col space-y-1.5 p-6 text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <svg class="h-8 w-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold leading-none tracking-tight text-xl text-gray-900">Interactive Campus Map</h3>
+            </div>
+            <div class="p-6 pt-0">
+              <p class="text-sm text-muted-foreground text-center text-gray-600 leading-relaxed">
+                Discover campus resources, buildings, and services with our personalized map view.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm border-orange-100 hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <div class="flex flex-col space-y-1.5 p-6 text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <svg class="h-8 w-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold leading-none tracking-tight text-xl text-gray-900">Personalized To-Do List</h3>
+            </div>
+            <div class="p-6 pt-0">
+              <p class="text-sm text-muted-foreground text-center text-gray-600 leading-relaxed">
+                Get customized tasks based on your student type and interests to stay on track.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm border-orange-100 hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <div class="flex flex-col space-y-1.5 p-6 text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <svg class="h-8 w-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold leading-none tracking-tight text-xl text-gray-900">Progress Tracker</h3>
+            </div>
+            <div class="p-6 pt-0">
+              <p class="text-sm text-muted-foreground text-center text-gray-600 leading-relaxed">
+                Monitor your onboarding milestones and celebrate your achievements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 lg:py-24 bg-gradient-to-r from-orange-500 to-orange-600">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+          Ready to start your Longhorn journey?
+        </h2>
+        <p class="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
+          Join thousands of students who have successfully navigated their college experience with our guidance.
+        </p>
+        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-orange-600 hover:bg-gray-50 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 h-11 rounded-md px-8">
+          Start Your Journey Today
+          <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12" id="faq">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="col-span-2">
+            <div class="flex items-center space-x-2 mb-4">
+              <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-sm">LJ</span>
+              </div>
+              <span class="text-xl font-bold">Longhorn Journey</span>
+            </div>
+            <p class="text-gray-400 mb-4 leading-relaxed">
+              Empowering UT Austin students with personalized guidance and resources for a successful college experience.
+            </p>
+            <p class="text-sm text-gray-500">
+              © 2024 Longhorn Journey. Built with ❤️ for UT Austin students.
+            </p>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#start" class="hover:text-orange-400 transition-colors">Get Started</a></li>
+              <li><a href="#about" class="hover:text-orange-400 transition-colors">About</a></li>
+              <li><a href="#faq" class="hover:text-orange-400 transition-colors">FAQ</a></li>
+              <li><a href="/dashboard" class="hover:text-orange-400 transition-colors">Dashboard</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Support</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="mailto:help@longhornjourney.com" class="hover:text-orange-400 transition-colors">Contact Us</a></li>
+              <li><a href="https://utexas.edu" class="hover:text-orange-400 transition-colors">UT Austin</a></li>
+              <li><a href="/orientation" class="hover:text-orange-400 transition-colors">Orientation</a></li>
+              <li><a href="/resources" class="hover:text-orange-400 transition-colors">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 </Layout>
+
+<script>
+  // Mobile menu toggle
+  const menuButton = document.querySelector('[data-menu-toggle]');
+  const mobileMenu = document.querySelector('[data-mobile-menu]');
+  
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
