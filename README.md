@@ -2,6 +2,24 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+## Tech Stack
+### 📱 Frontend
+- **React Native** – Cross-platform mobile development (iOS & Android)
+- **TypeScript** – Strongly typed JavaScript for safer and more scalable code
+- **Tailwind CSS** – Utility-first styling framework for fast and consistent UI design
+
+### 🗄️ Backend & Infrastructure
+- **SQL Database** – Structured data storage for users, app content, and analytics
+- **Cloudflare** – Edge computing, serverless functions, API routing, security, and global performance optimization
+
+## 🏗️ Architecture Overview
+
+- React Native handles the mobile interface.
+- TypeScript ensures type safety across the codebase.
+- Tailwind provides consistent and maintainable styling.
+- SQL stores structured application data.
+- Cloudflare powers serverless backend logic, API endpoints, authentication, and global content delivery.
+
 ## Get started
 
 1. Install dependencies
