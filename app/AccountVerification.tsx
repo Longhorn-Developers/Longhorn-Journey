@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import {
-    NativeSyntheticEvent,
-    SafeAreaView,
-    Text,
-    TextInput,
-    TextInputKeyPressEventData,
-    TouchableOpacity,
-    View,
+  NativeSyntheticEvent,
+  SafeAreaView,
+  Text,
+  TextInput,
+  TextInputKeyPressEventData,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 interface AccountVerificationProps {
@@ -58,7 +58,7 @@ export default function AccountVerification({ onVerify, onBack, onResend }: Acco
         </Text>
 
         {/* Code Input Boxes */}
-        <View className="flex-row justify-start gap-3 mb-8">
+        <View className="flex-row justify-center gap-3 mb-8">
         {code.map((digit, index) => (
             <TextInput
             key={index}
