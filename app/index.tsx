@@ -1,9 +1,5 @@
-import { Text, View } from "react-native";
+import InterestSelection from './InterestSelection';
 
 export default function Index() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Welcome to Longhorn Journey</Text>
-    </View>
-  );
+  return <InterestSelection />;
 }
