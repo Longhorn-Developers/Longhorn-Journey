@@ -1,6 +1,7 @@
 import ArtsIcon from '@/assets/images/arts_culture.svg';
 import BallIcon from '@/assets/images/ball.svg';
 import BusinessIcon from '@/assets/images/business.svg';
+import DropdownArrow from '@/assets/images/dropdown-arrow.svg';
 import FoodIcon from '@/assets/images/food&drink.svg';
 import HealthIcon from '@/assets/images/health_wellness.svg';
 import HomeIcon from '@/assets/images/home_lifestyle.svg';
@@ -199,7 +200,7 @@ export default function InterestSelection({ onNext, onBack }: InterestSelectionP
                   onPress={() => toggleCategory(category.id)}
                 >
                   <View className="flex-row items-center gap-3">
-                    <IconComponent width={20} height={20} />
+                    <IconComponent width={24} height={24} />
                     <Text className="text-sm font-semibold text-gray-800">{category.label}</Text>
                     {selectedCount > 0 && (
                       <View className="bg-orange-700 rounded-full w-5 h-5 items-center justify-center">
@@ -207,11 +208,15 @@ export default function InterestSelection({ onNext, onBack }: InterestSelectionP
                       </View>
                     )}
                   </View>
-                  <Text className="text-gray-400">{isExpanded ? '∧' : '∨'}</Text>
+                  <DropdownArrow 
+                    width={16} 
+                    height={16} 
+                    style={{ transform: [{ rotate: isExpanded ? '180deg' : '0deg' }] }} 
+                  />
                 </TouchableOpacity>
 
                 {isExpanded && (
-                  <View className="px-4 pb-4 flex-row flex-wrap gap-2 border-t border-gray-100">
+                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, paddingHorizontal: 16, paddingBottom: 16, borderTopWidth: 1, borderTopColor: '#F3F4F6' }}>
                     {category.tags.map((tag) => {
                       const isSelected = selectedTags.includes(tag);
                       return (
