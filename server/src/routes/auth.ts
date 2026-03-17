@@ -1,0 +1,93 @@
+import { Request, Response, Router } from "express";
+import jwt from "jsonwebtoken";
+import { AuthRequest, requireAuth } from "../middleware/requireAuth";
+import { verificationStore } from "../store/authStore";
+import { sendVerificationEmail } from "../utils/sendEmail";
+
+const router = Router();
+const JWT_SECRET = process.env.JWT_SECRET || "fallback-secret";
+
+function generateCode() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+function isValidUTEmail(email: string) {
+  return email.toLowerCase().endsWith("@utexas.edu");
+}
+
+router.post("/send-code", async (req: Request, res: Response) => {
+  const { email } = req.body;
+
+  if (!email || typeof email !== "string") {
+    return res.status(400).json({ error: "MISSING_EMAIL" });
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+
+  if (!isValidUTEmail(normalizedEmail)) {
+    return res.status(400).json({ error: "INVALID_UT_EMAIL" });
+  }
+
+  const code = generateCode();
+  const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+  verificationStore.set(normalizedEmail, {
+    code,
+    expiresAt,
+    verified: false,
+  });
+
+  await sendVerificationEmail(normalizedEmail, code);
+
+  return res.status(200).json({
+    message: "VERIFICATION_CODE_SENT",
+  });
+});
+
+router.post("/verify-code", (req: Request, res: Response) => {
+  const { email, code } = req.body;
+
+  if (!email || !code) {
+    return res.status(400).json({ error: "MISSING_FIELDS" });
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+  const record = verificationStore.get(normalizedEmail);
+
+  if (!record) {
+    return res.status(400).json({ error: "CODE_NOT_FOUND" });
+  }
+
+  if (Date.now() > record.expiresAt) {
+    verificationStore.delete(normalizedEmail);
+    return res.status(400).json({ error: "CODE_EXPIRED" });
+  }
+
+  if (record.code !== code) {
+    return res.status(400).json({ error: "INVALID_CODE" });
+  }
+
+  record.verified = true;
+  verificationStore.set(normalizedEmail, record);
+
+  const token = jwt.sign({ email: normalizedEmail }, JWT_SECRET, {
+    expiresIn: "7d",
+  });
+
+  return res.status(200).json({
+    message: "AUTHENTICATED",
+    token,
+    user: {
+      email: normalizedEmail,
+      isVerified: true,
+    },
+  });
+});
+
+router.get("/me", requireAuth, (req: AuthRequest, res: Response) => {
+  return res.status(200).json({
+    user: req.user,
+  });
+});
+
+export default router;
