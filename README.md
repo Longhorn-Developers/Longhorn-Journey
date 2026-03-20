@@ -3,12 +3,15 @@
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Tech Stack
+
 ### 📱 Frontend
+
 - **React Native** – Cross-platform mobile development (iOS & Android)
 - **TypeScript** – Strongly typed JavaScript for safer and more scalable code
 - **Tailwind CSS** – Utility-first styling framework for fast and consistent UI design
 
 ### 🗄️ Backend & Infrastructure
+
 - **SQL Database** – Structured data storage for users, app content, and analytics
 - **Cloudflare** – Edge computing, serverless functions, API routing, security, and global performance optimization
 
@@ -66,3 +69,25 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Starting the Server
+
+1. Open a 2nd terminal window while keeping the client terminal open
+
+2. Cd into the /server directory
+
+   ```bash
+   cd server
+   ```
+
+3. Install dependencies
+
+   ```bash
+   npm install express cors dotenv
+   ```
+
+4. Start the server with the /server directory
+
+   ```bash
+   npm run dev
+   ```
